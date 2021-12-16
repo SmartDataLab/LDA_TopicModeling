@@ -176,7 +176,9 @@ plt.show()
 # 保存doc_topic_distr
 from tqdm import tqdm
 
+print("before best model prediction")
 doc_topic_dist = best_model.transform(tf)
+print("after best model prediction")
 with open(os.path.join("lda_result", "res_doc_topic.csv"), "w") as f:
     f.write("ProjectID,TopicDistribution\n")
     for idx, dist in tqdm(enumerate(doc_topic_dist)):
