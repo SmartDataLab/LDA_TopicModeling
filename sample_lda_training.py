@@ -174,10 +174,12 @@ plt.savefig(os.path.join("lda_result", "perplexityTrend.png"))
 plt.show()
 
 # 保存doc_topic_distr
+from tqdm import tqdm
+
 doc_topic_dist = best_model.transform(tf)
 with open(os.path.join("lda_result", "res_doc_topic.csv"), "w") as f:
     f.write("ProjectID,TopicDistribution\n")
-    for idx, dist in enumerate(doc_topic_dist):
+    for idx, dist in tqdm(enumerate(doc_topic_dist)):
         # 注意：由于sklearn LDA函数限制，此函数中输出的topic_word矩阵未normalize
         dist = [str(x) for x in dist]
         f.write(str(idx + 1) + ",")
